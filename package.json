@@ -1,0 +1,25 @@
+{
+  "name": "soccer-api",
+  "version": "1.0.0",
+  "description": "Practicing server side rendering",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matiasbobek/Soccer-API.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matiasbobek/Soccer-API/issues"
+  },
+  "homepage": "https://github.com/matiasbobek/Soccer-API#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
