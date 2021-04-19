@@ -14,9 +14,19 @@ app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
 app.get('/', (req, res) => {
-  res.render('main'), {
+  res.render('teams', {
     layout: 'main',
-  };
+    data: {
+      name: 'pepe',
+    },
+  });
+
+  //task: creates a object with the information of teams.json
+ /* fetch('data/teams.json')
+    .then((teams) => teams.json())
+    .then((teamsJSON) => console.log(teamsJSON));
+*/
+
 });
 
 console.log(`i'm listening at http://localhost:${port}`);
