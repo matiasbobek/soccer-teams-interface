@@ -33,8 +33,8 @@ function searchTeamFromTla(teams, tla) {
     if (teams[i].tla === tla) {
       selectedTeam = teams[i];
     }
-    return selectedTeam;
   }
+  return selectedTeam;
 }
 
 app.use(express.static(`${__dirname}/uploads`));
@@ -65,7 +65,7 @@ app.get('/:tla', (req, res) => {
       colors: team.colors,
       venue: team.venue,
     },
-  });
+  }); 
 });
 
 console.log(`i'm listening at http://localhost:${port}`);
