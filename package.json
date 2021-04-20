@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev:template": "cd ./template-engine && nodemon --inspect index.js"
+    "dev": "cd ./template-engine && nodemon --inspect index.js"
   },
   "repository": {
     "type": "git",
