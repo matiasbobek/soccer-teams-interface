@@ -1,10 +1,17 @@
 
-<h1>the name team is s {{data.name}}</h1>
+<div class="container-sm" id="title">
+    <h1 class="display-3"> Premier League Teams </h1>
+</div>
 
-<ul>
-{{#each data.teams as |item|}}
-  <img src="{{item.crestUrl}}" alt="soccer-crest" width="100px" height="100px"/>
-
-  <li>{{item.name}}</li>
-{{/each}}
-</ul>
+<div class="container-sm">
+    {{#each data.teams as |item|}}
+        <ul class="list-group list-group-horizontal-sm">
+            <li class="list-group-item">
+                <img src="{{item.crestUrl}}" alt="soccer-crest" width="100px" height="100px"/>
+            </li>
+            <li class="list-group-item flex-fill" style="width: 200px;">{{item.name}}</li>
+            <li class="list-group-item flex-fill" style="width: 200px;"> open / modify / delete </li>
+        </ul>
+    {{/each}}
+    </ul>
+</div>
