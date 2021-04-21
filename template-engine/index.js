@@ -27,16 +27,6 @@ function mapsAPITeams(teamsAPI) {
   return (teams);
 }
 
-function searchTeamFromTla(teams, tla) {
-  let selectedTeam;
-  for (let i = 0; i < teams.length; i++) {
-    if (teams[i].tla === tla) {
-      selectedTeam = teams[i];
-    }
-  }
-  return selectedTeam;
-}
-
 app.use(express.static(`${__dirname}/uploads`));
 
 app.get('/', (req, res) => {
@@ -49,10 +39,10 @@ app.get('/', (req, res) => {
   });
 });
 
-app.get('/:tla', (req, res) => {
+app.get('/team', (req, res) => {
   const teamsAPI = JSON.parse(fs.readFileSync('../data/teams.json'));
   const teams = mapsAPITeams(teamsAPI);
-  const team = searchTeamFromTla(teams, req.params.tla);
+  const team = teams.find((item) => item.tla === req.query.tla);
 
   res.render('team', {
     layout: 'main',
@@ -65,7 +55,7 @@ app.get('/:tla', (req, res) => {
       colors: team.colors,
       venue: team.venue,
     },
-  }); 
+  });
 });
 
 console.log(`i'm listening at http://localhost:${port}`);
