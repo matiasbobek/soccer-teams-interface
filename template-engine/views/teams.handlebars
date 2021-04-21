@@ -1,19 +1,25 @@
 
 <div class="container-sm" id="title">
-    <h1 class="display-3"> Premier League Teams </h1>
+    <h1> Premier League Teams </h1>
 </div>
 
 <div class="container-sm">
-    {{#each data.teams as |item|}}
-        <ul class="list-group list-group-horizontal-sm">
-            <li class="list-group-item">
-                <img src="{{item.crestUrl}}" alt="soccer-crest" width="100px" height="100px"/>
-            </li>
-            <li class="list-group-item flex-fill" style="width: 200px;">{{item.name}}</li>
-            <li class="list-group-item flex-fill" style="width: 200px;"> 
-                <a href="/{{item.tla}}">view</a> / modify / delete 
-            </li>
-        </ul>
-    {{/each}}
-    </ul>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Team Crud</th>
+        <th scope="col">Name</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+        {{#each data.teams as |item|}}
+      <tr>
+        <td><img src="{{item.crestUrl}}" alt="soccer-crest" width="100px" height="100px"/></td>
+        <td>{{item.name}}</td>
+        <td colspan="2"><a href="/team/?tla={{item.tla}}">view</a> / modify / delete </td>
+      </tr>
+          {{/each}}
+    </tbody>
+  </table>
 </div>
