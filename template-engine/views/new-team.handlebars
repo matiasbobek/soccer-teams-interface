@@ -1,5 +1,8 @@
 {{#if data.message}}
 
+<div class="container-sm">
+
+
 {{#if data.fileName}}
 <img id="team-crest" src="/team-crest/{{data.fileName}}" />
 {{/if}}
@@ -15,33 +18,49 @@
 <p>{{data.message}}</p>
 <a href="/">Return to main</a>
 <a href="/new-team">Create another team</a>
+</div>
 
 {{else}}
-<!-- enctype="multipart/form-data" es lo que nos permite subir un archivo al servidor -->
+
+<div class="container-sm">
+<h1>Create a new team</h1>
+
 <form action="/new-team" method="POST" enctype="multipart/form-data">
-  <label for="name">Team Name </label>
-  <input type="text" name="name" id="name" value="Boca Juniors"/>
-
+<div class="mb-3">
+  <label for="name" class="form-label">Team Name </label>
+  <input type="text" name="name" id="name" value="Boca Juniors" class="form-control"/>
+</div>
+<div class="mb-3">
   <label for="id">ID (three letters)</label>
-  <input type="text" name="id" id="id" value="BOC"/>
-
+  <input type="text" name="id" id="id" value="BOC" class="form-control"/>
+</div>
+<div class="mb-3">
   <label for="website">Web site</label>
-  <input type="text" name="website" id="website" value="https://www.bocajuniors.com.ar/"/>
-
+  <input type="text" name="website" id="website" value="https://www.bocajuniors.com.ar/" class="form-control"/>
+</div>
+<div class="mb-3">
   <label for="email">Email</label>
-  <input type="text" name="email" id="email" value="marketing@bocajuniors.com.ar"/>
-
+  <input type="text" name="email" id="email" value="marketing@bocajuniors.com.ar" class="form-control"/>
+</div>
+<div class="mb-3">
   <label for="foundation-year"> Foundation Year </label>
-  <input type="number" name="foundation-year" id="foundation-year" value="1905"/>
-
+  <input type="number" name="foundation-year" id="foundation-year" value="1905" class="form-control"/>
+</div>
+<div class="mb-3">
   <label for="colors"> Colors </label>
-  <input type="text" name="colors" id="colors" value="Blue / Gold"/>
-
+  <input type="text" name="colors" id="colors" value="Blue / Gold" class="form-control"/>
+</div>
+<div class="mb-3">
   <label for="venue"> Venue </label>
-  <input type="text" name="venue" id="venue" value="La Bombonera"/>
-
+  <input type="text" name="venue" id="venue" value="La Bombonera" class="form-control"/>
+</div>
+<div class="mb-3">
   <label for="crest">Team Crest </label>
-  <input type="file" value="No file uploaded" name="crest" id="crest">
-  <input type="submit" value="Upload" />
+  <input type="file" value="No file uploaded" name="crest" id="crest" class="form-control">
+</div>
+<div class="mb-3">
+  <button type="submit" class="btn btn-primary">Submit</button>
+</div>
 </form>
+</div>
 {{/if}}

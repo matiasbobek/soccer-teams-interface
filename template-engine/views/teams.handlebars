@@ -15,17 +15,19 @@
       </tr>
     </thead>
     <tbody>
-        {{#each data.teams as |item|}}
+    {{#each data.teams as |item|}}
       <tr>
       {{#if item.crestUrl}}
       <td><img src="{{item.crestUrl}}" alt="soccer-crest" width="100px" height="100px"/></td>
       {{else if item.crestFileName}}
       <td><img src="/team-crest/{{item.crestFileName}}" alt="soccer-crest" width="100px" height="100px"/></td>
+      {{else}}
+      <td></td>
       {{/if}}
         <td>{{item.name}}</td>
-        <td colspan="2"><a href="/team/?tla={{item.tla}}">view</a> / modify / delete </td>
+        <td colspan="2"><a href="/team/?tla={{item.tla}}">view</a> <a href="/modify/?tla={{item.tla}}"> modify </a></td>
       </tr>
-          {{/each}}
+    {{/each}}
     </tbody>
   </table>
 </div>
