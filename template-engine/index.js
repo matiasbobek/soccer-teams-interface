@@ -82,7 +82,13 @@ app.get('/new-team', (req, res) => {
 });
 
 app.post('/new-team', upload.single('crest'), (req, res) => {
-  const newTeam = new entities.SoccerTeam(req.body.name, null, req.file.filename, req.body.website, req.body.email, req.body['foundation-year'], req.body.colors, req.body.venue, req.body.id);
+  let fileName = null;
+
+  if (req.file) {
+    fileName = req.file.filename;
+  }
+
+  const newTeam = new entities.SoccerTeam(req.body.name, null, fileName, req.body.website, req.body.email, req.body['foundation-year'], req.body.colors, req.body.venue, req.body.id);
   addTeamToData(newTeam);
   console.log(newTeam);
   res.render('new-team', {
@@ -95,7 +101,7 @@ app.post('/new-team', upload.single('crest'), (req, res) => {
       colors: req.body.colors,
       venue: req.body.venue,
       email: req.body.email,
-      fileName: req.file.filename,
+      fileName,
       message: 'The team has been successfully created',
     },
   });

@@ -1,6 +1,8 @@
 {{#if data.message}}
 
+{{#if data.fileName}}
 <img id="team-crest" src="/team-crest/{{data.fileName}}" />
+{{/if}}
 
 <h1>{{data.name}}</h1>
 <p>ID: {{data.id}}</p>
