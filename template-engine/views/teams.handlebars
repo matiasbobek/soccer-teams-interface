@@ -11,7 +11,8 @@
       <tr>
         <th scope="col">Team Crest</th>
         <th scope="col">Name</th>
-        <th scope="col"><a href="/new-team">Create a new team</a></th>
+        <th scope="col">
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -25,10 +26,14 @@
       <td></td>
       {{/if}}
         <td>{{item.name}}</td>
-        <td colspan="2"><a href="/team/?tla={{item.tla}}">view</a> <a href="/modify/?tla={{item.tla}}"> modify </a></td>
+        <td colspan="2">
+          <button class="btn btn-primary" onclick="window.location.href = '/team/?tla={{item.tla}}'">View</button>
+          <button class="btn btn-primary" onclick="window.location.href = '/modify/?tla={{item.tla}}'">Modify</button>          
+        </td>
       </tr>
     {{/each}}
     </tbody>
   </table>
+  <button class="btn btn-primary" onclick="window.location.href = '/new-team'">Create a new team</button>
 </div>
 

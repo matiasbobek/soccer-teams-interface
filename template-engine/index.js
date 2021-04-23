@@ -176,8 +176,6 @@ app.post('/modify', upload.single('crest'), (req, res) => {
 
   const Team = new entities.SoccerTeam(req.body.name, null, fileName, req.body.website, req.body.email, req.body['foundation-year'], req.body.colors, req.body.venue, req.body.id);
   const modifiedTeam = modifyTeamInData(Team);
-  console.log(modifiedTeam);
-
   res.render('modify', {
     layout: 'main',
     data: {

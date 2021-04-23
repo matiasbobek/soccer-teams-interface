@@ -1,16 +1,23 @@
-
-<div class="container">
-  <h1> {{data.name}} </h1>
-  {{#if data.crestUrl}}
-    <td><img src="{{data.crestUrl}}" alt="soccer-crest" width="150px" height="150px"/></td>
-  {{else}}
-      <td><img src="/team-crest/{{data.crestFileName}}" alt="soccer-crest" width="150px" height="150px"/></td>
-  {{/if}}
-  <ul>
-      <li> Website: {{data.website}}</li>
-      <li> Email: {{data.email}}</li>
-      <li> Foundation Year: {{data.foundationYear}}</li>
-      <li> Colors: {{data.colors}}</li>
-      <li> Venue: {{data.venue}}</li>
-  </ul>
+<div class="container-sm" style="width: 60%;">
+  <h1 class="text-center"> {{data.name}} </h1>
+  </br>
+  <div class="row">
+    <div class="col-sm">
+      {{#if data.crestUrl}}
+        <td><img src="{{data.crestUrl}}" alt="soccer-crest" width="250px" height="250px"/></td>
+      {{else}}
+        <td><img src="/team-crest/{{data.crestFileName}}" alt="soccer-crest" width="250px" height="250px"/></td>
+      {{/if}}
+    </div>
+    <div class="col-sm">
+      <ul class="list-group">
+        <li class="list-group-item"> Website: {{data.website}}</li>
+        <li class="list-group-item"> Email: {{data.email}}</li>
+        <li class="list-group-item"> Foundation Year: {{data.foundationYear}}</li>
+        <li class="list-group-item"> Colors: {{data.colors}}</li>
+        <li class="list-group-item"> Venue: {{data.venue}}</li>
+      </ul>
+    </div>
+  </div>
+  <button class="btn btn-primary" onclick="window.location.href = '/'">Return to main</button>
 </div>

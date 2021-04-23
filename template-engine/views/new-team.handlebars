@@ -1,24 +1,37 @@
 {{#if data.message}}
 
+<div class="container-sm" style="width: 60%;">
+
 <div class="container-sm">
-
-
-{{#if data.fileName}}
-<img id="team-crest" src="/team-crest/{{data.fileName}}" />
-{{/if}}
-
-<h1>{{data.name}}</h1>
-<p>ID: {{data.id}}</p>
-<p>Web site: {{data.website}}</p>
-<p>email: {{data.email}}</p>
-<p>Foundation Year: {{data.foundationYear}}</p>
-<p>Colors: {{data.colors}}</p>
-<p>Venue: {{data.venue}}</p>
-
-<p>{{data.message}}</p>
-<a href="/">Return to main</a>
-<a href="/new-team">Create another team</a>
+  <h1 class="text-center"> {{data.name}} </h1>
+  </br>
+  <div class="row">
+    <div class="col-sm">
+    {{#if data.fileName}}
+    <img id="team-crest" src="/team-crest/{{data.fileName}}" width="500px" height="250px"/>
+    {{/if}}
+    </div>
+    <div class="col-sm">
+      <ul class="list-group">
+        <li class="list-group-item"> ID: {{data.id}}</li>
+        <li class="list-group-item"> Website: {{data.website}}</li>
+        <li class="list-group-item"> Email: {{data.email}}</li>
+        <li class="list-group-item"> Foundation Year: {{data.foundationYear}}</li>
+        <li class="list-group-item"> Colors: {{data.colors}}</li>
+        <li class="list-group-item"> Venue: {{data.venue}}</li>
+      </ul>
+    </div>
+  </div>
 </div>
+  <p>{{data.message}}</p>
+  <button class="btn btn-primary" onclick="window.location.href = '/'">Return to main</button>
+  <button class="btn btn-primary" onclick="window.location.href = '/new-team'">Create another team</button>
+</div>
+
+
+
+
+
 
 {{else}}
 

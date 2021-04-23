@@ -1,66 +1,90 @@
 {{#if data.message}}
 
-{{#if data.fileName}}
-<img id="team-crest" src="/team-crest/{{data.fileName}}" />
-{{else if data.crestUrl}}
-<img src="{{data.crestUrl}}" alt="soccer-crest" width="150px" height="150px"/>
-{{else if data.crestFileName}}
-<img src="/team-crest/{{data.crestFileName}}" alt="soccer-crest" width="150px" height="150px"/>
-{{/if}}
-
-<h1>{{data.name}}</h1>
-<p>ID: {{data.id}}</p>
-<p>Web site: {{data.website}}</p>
-<p>email: {{data.email}}</p>
-<p>Foundation Year: {{data.foundationYear}}</p>
-<p>Colors: {{data.colors}}</p>
-<p>Venue: {{data.venue}}</p>
-
-<p>{{data.message}}</p>
-<a href="/">Return to main</a>
+<div class="container-sm" style="width: 60%;">
+  <h1 class="text-center"> {{data.name}} </h1>
+  </br>
+  <div class="row">
+    <div class="col-sm">
+        {{#if data.fileName}}
+        <img id="team-crest" src="/team-crest/{{data.fileName}}" />
+        {{else if data.crestUrl}}
+        <img src="{{data.crestUrl}}" alt="soccer-crest" width="150px" height="150px"/>
+        {{else if data.crestFileName}}
+        <img src="/team-crest/{{data.crestFileName}}" alt="soccer-crest"/>
+        {{/if}}
+    </div>
+    <div class="col-sm">
+      <ul class="list-group">
+        <li class="list-group-item"> ID: {{data.id}}</li>
+        <li class="list-group-item"> Website: {{data.website}}</li>
+        <li class="list-group-item"> Email: {{data.email}}</li>
+        <li class="list-group-item"> Foundation Year: {{data.foundationYear}}</li>
+        <li class="list-group-item"> Colors: {{data.colors}}</li>
+        <li class="list-group-item"> Venue: {{data.venue}}</li>
+      </ul>
+    </div>
+  </div>
+    <p>{{data.message}}</p>
+  <button class="btn btn-primary" onclick="window.location.href = '/'">Return to main</button>
+</div>
 
 {{else}}
 
-
 <div class="container">
 <form action="/modify" method="POST" enctype="multipart/form-data">
+<div class="mb-3"></div>
   {{#if data.crestUrl}}
     <td><img src="{{data.crestUrl}}" alt="soccer-crest" width="150px" height="150px"/></td>
   {{else}}
       <td><img src="/team-crest/{{data.crestFileName}}" alt="soccer-crest" width="150px" height="150px"/></td>
   {{/if}}
-
+</div>
+<div class="mb-3">
   <label for="crest">New Team Crest </label>
-  <input type="file" name="crest" id="crest">
-
+  <input type="file" name="crest" id="crest" class="form-control">
+</div>
+<div class="mb-3">
   <label for="name">Team Name </label>
-  <input type="text" name="name" id="name" value="{{data.name}}"/>
-
+  <input type="text" name="name" id="name" value="{{data.name}}" class="form-control"/>
+</div>
+<div class="mb-3">
   <label for="id">ID (three letters)</label>
-  <input type="text" name="id" id="id" value="{{data.tla}}" readonly/>
-
+  <input type="text" name="id" id="id" value="{{data.tla}}" readonly class="form-control"/>
+</div>
+<div class="mb-3">
   <label for="website">Web site</label>
-  <input type="text" name="website" id="website" value="{{data.website}}"/>
-
+  <input type="text" name="website" id="website" value="{{data.website}}"class="form-control"/>
+</div>
+<div class="mb-3">
   <label for="email">Email</label>
-  <input type="text" name="email" id="email" value="{{data.email}}"/>
-
+  <input type="text" name="email" id="email" value="{{data.email}}"class="form-control"/>
+</div>
+<div class="mb-3">
   <label for="foundation-year"> Foundation Year </label>
-  <input type="number" name="foundation-year" id="foundation-year" value="{{data.founded}}"/>
-
+  <input type="number" name="foundation-year" id="foundation-year" value="{{data.founded}}" class="form-control"/>
+</div>
+<div class="mb-3">
   <label for="colors"> Colors </label>
-  <input type="text" name="colors" id="colors" value="{{data.clubColors}}"/>
-
+  <input type="text" name="colors" id="colors" value="{{data.clubColors}}" class="form-control"/>
+</div>
+<div class="mb-3">
   <label for="venue"> Venue </label>
-  <input type="text" name="venue" id="venue" value="{{data.venue}}"/>
-
-  <input type="submit" value="Modify" />
+  <input type="text" name="venue" id="venue" value="{{data.venue}}" class="form-control"/>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+  <button type="submit" class="btn btn-primary">Modify</button>
+    </div>
 </form>
-
+    <div class="col-sm">
 <form action="/" method="POST" enctype="multipart/form-data">
-<input type="text" name="id" id="id" value="{{data.tla}}" readonly style="display: none;"/>
-<input type="submit" value="Delete Team" />
+    <input type="text" name="id" id="id" value="{{data.tla}}" readonly style="display: none;"/>
+    <button type="submit" class="btn btn-primary">Delete Team</button>
 </form>
-
+    </div>
+  </div>
+</div>
 </div>
 {{/if}}
+
