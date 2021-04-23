@@ -7,14 +7,14 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const fs = require('fs');
 const multer = require('multer');
+
 const entities = require('./entities');
 
 const port = 8080;
 
 const app = express();
 const handlebars = exphbs.create();
-
-const upload = multer({ dest: './uploads/team-logo' });
+const upload = multer({ dest: './uploads/team-crest' });
 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
@@ -54,6 +54,29 @@ app.get('/team', (req, res) => {
       foundationYear: team.foundationYear,
       colors: team.colors,
       venue: team.venue,
+    },
+  });
+});
+
+app.get('/new-team', (req, res) => {
+  // const teamsAPI = JSON.parse(fs.readFileSync('../data/teams.json'));
+  // const teams = mapsAPITeams(teamsAPI);
+  // const team = teams.find((item) => item.tla === req.query.tla);
+
+  res.render('new-team', {
+    layout: 'main',
+    data: {
+    },
+  });
+});
+
+app.post('/new-team', upload.single('crest'), (req, res) => {
+  res.render('new-team', {
+    layout: 'main',
+    data: {
+      name: req.body.name,
+      fileName: req.file.filename,
+      message: 'The team has been successfully created',
     },
   });
 });

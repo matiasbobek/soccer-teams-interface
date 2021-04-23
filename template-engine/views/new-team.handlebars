@@ -1,0 +1,15 @@
+{{#if data.message}}
+
+<h1>{{data.name}}</h1>
+<img src="/team-crest/{{data.fileName}}" />
+
+<p>{{data.message}}</p>
+{{/if}}
+<!-- enctype="multipart/form-data" es lo que nos permite subir un archivo al servidor -->
+<form action="/new-team" method="POST" enctype="multipart/form-data">
+  <label for="name">Team Name </label>
+  <input type="text" name="name" id="name"/>
+  <label for="crest">Team Crest </label>
+  <input type="file" value="No file uploaded" name="crest" id="crest">
+  <input type="submit" value="Upload" />
+</form>
