@@ -1,7 +1,11 @@
 
 <div class="container">
   <h1> {{data.name}} </h1>
-  <img src="{{data.crestUrl}}"/>
+  {{#if data.crestUrl}}
+    <td><img src="{{data.crestUrl}}" alt="soccer-crest" width="150px" height="150px"/></td>
+  {{else}}
+      <td><img src="/team-crest/{{data.crestFileName}}" alt="soccer-crest" width="150px" height="150px"/></td>
+  {{/if}}
   <ul>
       <li> Website: {{data.website}}</li>
       <li> Email: {{data.email}}</li>
