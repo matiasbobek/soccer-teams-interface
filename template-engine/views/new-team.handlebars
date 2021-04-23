@@ -1,15 +1,41 @@
 {{#if data.message}}
 
+<img id="team-crest" src="/team-crest/{{data.fileName}}" />
+
 <h1>{{data.name}}</h1>
-<img src="/team-crest/{{data.fileName}}" />
+<p>ID: {{data.id}}</p>
+<p>Web site: {{data.website}}</p>
+<p>Foundation Year: {{data.foundationYear}}</p>
+<p>Colors: {{data.colors}}</p>
+<p>Venue: {{data.venue}}</p>
 
 <p>{{data.message}}</p>
-{{/if}}
+<a href="/">Return to main</a>
+<a href="/new-team">Create another team</a>
+
+{{else}}
 <!-- enctype="multipart/form-data" es lo que nos permite subir un archivo al servidor -->
 <form action="/new-team" method="POST" enctype="multipart/form-data">
   <label for="name">Team Name </label>
-  <input type="text" name="name" id="name"/>
+  <input type="text" name="name" id="name" value="Boca Juniors"/>
+
+  <label for="id">ID (three letters)</label>
+  <input type="text" name="id" id="id" value="BOC"/>
+
+  <label for="website">Web site</label>
+  <input type="text" name="website" id="website" value="https://www.bocajuniors.com.ar/"/>
+
+  <label for="foundation-year"> Foundation Year </label>
+  <input type="number" name="foundation-year" id="foundation-year" value="1905"/>
+
+  <label for="colors"> Colors </label>
+  <input type="text" name="colors" id="colors" value="Blue / Gold"/>
+
+  <label for="venue"> Venue </label>
+  <input type="text" name="venue" id="venue" value="La Bombonera"/>
+
   <label for="crest">Team Crest </label>
   <input type="file" value="No file uploaded" name="crest" id="crest">
   <input type="submit" value="Upload" />
 </form>
+{{/if}}

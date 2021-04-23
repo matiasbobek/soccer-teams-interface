@@ -74,7 +74,12 @@ app.post('/new-team', upload.single('crest'), (req, res) => {
   res.render('new-team', {
     layout: 'main',
     data: {
+      id: req.body.id,
       name: req.body.name,
+      website: req.body.website,
+      foundationYear: req.body['foundation-year'],
+      colors: req.body.colors,
+      venue: req.body.venue,
       fileName: req.file.filename,
       message: 'The team has been successfully created',
     },
