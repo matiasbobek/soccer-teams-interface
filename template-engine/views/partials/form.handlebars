@@ -1,0 +1,42 @@
+
+<div class="container-sm">
+<h1>Create a new team</h1>
+
+<form action="/new-team" method="POST" enctype="multipart/form-data">
+<div class="mb-3">
+  <label for="name" class="form-label">Team Name </label>
+  <input type="text" name="name" id="name" value="Boca Juniors" class="form-control"/>
+</div>
+<div class="mb-3">
+  <label for="id">ID (three letters)</label>
+  <input type="text" name="id" id="id" class="form-control"/>
+</div>
+<div class="mb-3">
+  <label for="website">Web site</label>
+  <input type="text" name="website" id="website" value="https://www.bocajuniors.com.ar/" class="form-control"/>
+</div>
+<div class="mb-3">
+  <label for="email">Email</label>
+  <input type="text" name="email" id="email" value="marketing@bocajuniors.com.ar" class="form-control"/>
+</div>
+<div class="mb-3">
+  <label for="foundation-year"> Foundation Year </label>
+  <input type="number" name="foundation-year" id="foundation-year" value="1905" class="form-control"/>
+</div>
+<div class="mb-3">
+  <label for="colors"> Colors </label>
+  <input type="text" name="colors" id="colors" value="Blue / Gold" class="form-control"/>
+</div>
+<div class="mb-3">
+  <label for="venue"> Venue </label>
+  <input type="text" name="venue" id="venue" value="La Bombonera" class="form-control"/>
+</div>
+<div class="mb-3">
+  <label for="crest">Team Crest </label>
+  <input type="file" value="No file uploaded" name="crest" id="crest" class="form-control">
+</div>
+<div class="mb-3">
+  <button type="submit" class="btn btn-primary">Submit</button>
+</div>
+</form>
+</div>

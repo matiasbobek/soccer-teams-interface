@@ -124,12 +124,22 @@ app.get('/new-team', (req, res) => {
 
 app.post('/new-team', upload.single('crest'), (req, res) => {
   let fileName = null;
+  let isError;
+  const regEx = /^[a-z]*$/i;
   if (req.file) {
     fileName = req.file.filename;
   }
 
-  const newTeam = new entities.SoccerTeam(req.body.name, null, fileName, req.body.website, req.body.email, req.body['foundation-year'], req.body.colors, req.body.venue, req.body.id);
-  addTeamToData(newTeam);
+  //buscarteam por tla si da true
+ 
+
+  // validar si son letras también
+  if (req.body.id.length === 3 && req.body.id.match(regEx)) {
+    const newTeam = new entities.SoccerTeam(req.body.name, null, fileName, req.body.website, req.body.email, req.body['foundation-year'], req.body.colors, req.body.venue, req.body.id);
+    addTeamToData(newTeam);
+  } else {
+    isError = true;
+  }
 
   res.render('new-team', {
     layout: 'main',
@@ -142,7 +152,7 @@ app.post('/new-team', upload.single('crest'), (req, res) => {
       venue: req.body.venue,
       email: req.body.email,
       fileName,
-      message: 'The team has been successfully created',
+      isError,
     },
   });
 });
