@@ -11,7 +11,7 @@ const multer = require('multer');
 const entities = require('./entities');
 const api = require('./api');
 
-const port = process.env.PORT || 8080;
+const port = 8080;
 
 const app = express();
 const handlebars = exphbs.create();
