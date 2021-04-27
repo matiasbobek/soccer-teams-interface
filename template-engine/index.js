@@ -9,6 +9,7 @@ const fs = require('fs');
 const multer = require('multer');
 
 const entities = require('./entities');
+const api = require('./api');
 
 const port = 8080;
 
@@ -19,57 +20,6 @@ const upload = multer({ dest: './uploads/team-crest' });
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
-// put those in "api.js"
-function mapTeamsFromData() {
-  const teamsData = JSON.parse(fs.readFileSync('../data/teams.json'));
-  const teams = [];
-  teamsData.forEach((team) => {
-    teams.push(new entities.SoccerTeam(team.name, team.crestUrl, team.crestFileName, team.website, team.email, team.founded, team.clubColors, team.venue, team.tla));
-  });
-  return (teams);
-}
-
-function addTeamToData(team) {
-  const teamsData = JSON.parse(fs.readFileSync('../data/teams.json'));
-  const teams = [];
-  teamsData.forEach((dataTeam) => {
-    teams.push(dataTeam);
-  });
-  teams.push(team);
-  fs.writeFileSync('../data/teams.json', JSON.stringify(teams));
-}
-
-function modifyTeamInData(team) {
-  const teamsData = JSON.parse(fs.readFileSync('../data/teams.json'));
-  const teams = [];
-  teamsData.forEach((dataTeam) => {
-    if (team.tla === dataTeam.tla) {
-      if (team.crestFileName) {
-        team.crestUrl = null;
-      } else {
-        team.crestUrl = dataTeam.crestUrl;
-      }
-      teams.push(team);
-    } else {
-      teams.push(dataTeam);
-    }
-  });
-  fs.writeFileSync('../data/teams.json', JSON.stringify(teams));
-  return team;
-}
-
-function deleteTeamFromData(teamTla) {
-  const teamsData = JSON.parse(fs.readFileSync('../data/teams.json'));
-  const teams = [];
-  teamsData.forEach((dataTeam) => {
-    if (teamTla === dataTeam.tla) {
-    } else {
-      teams.push(dataTeam);
-    }
-  });
-  fs.writeFileSync('../data/teams.json', JSON.stringify(teams));
-}
-
 app.use(express.static(`${__dirname}/uploads`));
 
 app.get('/', (req, res) => {
@@ -77,26 +27,26 @@ app.get('/', (req, res) => {
   res.render('teams', {
     layout: 'main',
     data: {
-      teams: mapTeamsFromData(teamsData),
+      teams: api.mapTeamsFromData(teamsData),
     },
   });
 });
 
 app.post('/', upload.single('id'), (req, res) => {
   const teamTla = req.body.id;
-  deleteTeamFromData(teamTla);
+  api.deleteTeamFromData(teamTla);
 
   const teamsData = JSON.parse(fs.readFileSync('../data/teams.json'));
   res.render('teams', {
     layout: 'main',
     data: {
-      teams: mapTeamsFromData(teamsData),
+      teams: api.mapTeamsFromData(teamsData),
     },
   });
 });
 
 app.get('/team', (req, res) => {
-  const teams = mapTeamsFromData();
+  const teams = api.mapTeamsFromData();
   const team = teams.find((item) => item.tla === req.query.tla);
 
   res.render('team', {
@@ -126,20 +76,20 @@ app.post('/new-team', upload.single('crest'), (req, res) => {
   let fileName = null;
   let isError;
   const regEx = /^[a-z]*$/i;
+
   if (req.file) {
     fileName = req.file.filename;
   }
-  const teams = mapTeamsFromData();
+
+  const teams = api.mapTeamsFromData();
   const team = teams.find((item) => item.tla === req.body.id.toUpperCase());
 
   if (req.body.id.length === 3 && req.body.id.match(regEx) && !team) {
     const newTeam = new entities.SoccerTeam(req.body.name, null, fileName, req.body.website, req.body.email, req.body['foundation-year'], req.body.colors, req.body.venue, req.body.id.toUpperCase());
-    addTeamToData(newTeam);
+    api.addTeamToData(newTeam);
   } else {
     isError = true;
   }
-
-  console.log(isError)
 
   res.render('new-team', {
     layout: 'main',
@@ -159,7 +109,7 @@ app.post('/new-team', upload.single('crest'), (req, res) => {
 
 app.get('/modify', (req, res) => {
   const teamsData = JSON.parse(fs.readFileSync('../data/teams.json'));
-  const teams = mapTeamsFromData(teamsData);
+  const teams = api.mapTeamsFromData(teamsData);
   const team = teams.find((item) => item.tla === req.query.tla);
 
   res.render('modify', {
@@ -185,7 +135,8 @@ app.post('/modify', upload.single('crest'), (req, res) => {
   }
 
   const Team = new entities.SoccerTeam(req.body.name, null, fileName, req.body.website, req.body.email, req.body['foundation-year'], req.body.colors, req.body.venue, req.body.id);
-  const modifiedTeam = modifyTeamInData(Team);
+  const modifiedTeam = api.modifyTeamInData(Team);
+  
   res.render('modify', {
     layout: 'main',
     data: {
