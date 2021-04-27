@@ -35,7 +35,7 @@
 <div class="mb-3"></div>
   {{#if data.crestUrl}}
     <td><img src="{{data.crestUrl}}" alt="soccer-crest" width="150px" height="150px"/></td>
-  {{else}}
+  {{else if data.crestFileName}}
       <td><img src="/team-crest/{{data.crestFileName}}" alt="soccer-crest" width="150px" height="150px"/></td>
   {{/if}}
 </div>

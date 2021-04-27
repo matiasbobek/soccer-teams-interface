@@ -41,14 +41,8 @@ module.exports = {
   },
   deleteTeamFromData: function deleteTeamFromData(teamTla) {
     const teamsData = JSON.parse(fs.readFileSync('../data/teams.json'));
-    const teams = [];
-    teamsData.forEach((dataTeam) => {
-      if (teamTla === dataTeam.tla) {
-      } else {
-        teams.push(dataTeam);
-      }
-    });
+    const teams = teamsData.filter((team) => teamTla !== team.tla);
+
     fs.writeFileSync('../data/teams.json', JSON.stringify(teams));
   },
-
 };
