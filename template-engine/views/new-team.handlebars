@@ -1,5 +1,4 @@
-{{#if data.id}}
-    {{#if data.isError}}
+  {{#if data.isError}}
       {{>form}}
       <p style="color: red;">The id has already been used or does not have three letters</p>
     {{else}}
@@ -30,9 +29,5 @@
         <button class="btn btn-primary" onclick="window.location.href = '/'">Return to main</button>
         <button class="btn btn-primary" onclick="window.location.href = '/new-team'">Create another team</button>
       </div>
-    {{/if}}
-{{else}}
+  {{/if}}
 
-{{>form}}
-
-{{/if}}
