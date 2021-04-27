@@ -129,17 +129,17 @@ app.post('/new-team', upload.single('crest'), (req, res) => {
   if (req.file) {
     fileName = req.file.filename;
   }
+  const teams = mapTeamsFromData();
+  const team = teams.find((item) => item.tla === req.body.id);
 
-  //buscarteam por tla si da true
- 
-
-  // validar si son letras también
-  if (req.body.id.length === 3 && req.body.id.match(regEx)) {
+  if (req.body.id.length === 3 && req.body.id.match(regEx) && !team) {
     const newTeam = new entities.SoccerTeam(req.body.name, null, fileName, req.body.website, req.body.email, req.body['foundation-year'], req.body.colors, req.body.venue, req.body.id);
     addTeamToData(newTeam);
   } else {
     isError = true;
   }
+
+  console.log(isError)
 
   res.render('new-team', {
     layout: 'main',
