@@ -5,7 +5,7 @@
     <div class="col-sm">
       {{#if data.crestUrl}}
         <td><img src="{{data.crestUrl}}" alt="soccer-crest" width="250px" height="250px"/></td>
-      {{else}}
+      {{else if data.crestFileName}}
         <td><img src="/team-crest/{{data.crestFileName}}" alt="soccer-crest" width="250px" height="250px"/></td>
       {{/if}}
     </div>

@@ -10,6 +10,8 @@ const multer = require('multer');
 
 const entities = require('./entities');
 const api = require('./api');
+const { Console } = require('console');
+const { mapTeamsFromData } = require('./api');
 
 const port = 8080;
 
