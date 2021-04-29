@@ -1,8 +1,3 @@
-/* eslint-disable max-len */
-/* eslint-disable no-unused-expressions */
-/* eslint-disable no-sequences */
-/* eslint-disable linebreak-style */
-
 const express = require('express');
 const exphbs = require('express-handlebars');
 const fs = require('fs');
@@ -23,11 +18,10 @@ app.set('view engine', 'handlebars');
 app.use(express.static(`${__dirname}/uploads`));
 
 app.get('/', (req, res) => {
-  const teamsData = JSON.parse(fs.readFileSync('../data/teams.json'));
   res.render('teams', {
     layout: 'main',
     data: {
-      teams: api.mapTeamsFromData(teamsData),
+      teams: api.mapTeamsFromData(),
     },
   });
 });
@@ -36,11 +30,10 @@ app.post('/', upload.single('id'), (req, res) => {
   const teamTla = req.body.id;
   api.deleteTeamFromData(teamTla);
 
-  const teamsData = JSON.parse(fs.readFileSync('../data/teams.json'));
   res.render('teams', {
     layout: 'main',
     data: {
-      teams: api.mapTeamsFromData(teamsData),
+      teams: api.mapTeamsFromData(),
     },
   });
 });
@@ -108,8 +101,7 @@ app.post('/new-team', upload.single('crest'), (req, res) => {
 });
 
 app.get('/modify', (req, res) => {
-  const teamsData = JSON.parse(fs.readFileSync('../data/teams.json'));
-  const teams = api.mapTeamsFromData(teamsData);
+  const teams = api.mapTeamsFromData();
   const team = teams.find((item) => item.tla === req.query.tla);
 
   res.render('modify', {
