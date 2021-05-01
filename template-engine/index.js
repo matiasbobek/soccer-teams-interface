@@ -16,6 +16,7 @@ app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
 app.use(express.static(`${__dirname}/uploads`));
+app.use(express.static(`${__dirname}/public`));
 
 app.get('/', (req, res) => {
   res.render('teams', {
