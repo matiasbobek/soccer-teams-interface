@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "cd ./template-engine && nodemon --inspect index.js",
-    "start": "node index.js ./template-engine"
+    "start": "cd ./template-engine && node index.js"
   },
   "repository": {
     "type": "git",
